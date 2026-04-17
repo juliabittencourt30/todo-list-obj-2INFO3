@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed } from 'vue'
+import TaskChild from './components/TaskChild.vue';
 const tarefas = ref([
   { id: 1, desc: 'Prova Geografia', status: 'pendente' },
   { id: 2, desc: 'Prova História', status: 'concluida' },
@@ -47,13 +48,13 @@ function addTarefa() {
   novaTarefa.value = '';
 }
 
-function deleteTarefa(item) {
-  const posicao = tarefas.value.findIndex(t => t.id === item.id);
+function deleteTarefa(idTarefa) {
+  const posicao = tarefas.value.findIndex(t => t.id === idTarefa);
   tarefas.value.splice(posicao, 1);
 }
 
-function editTarefa(item) {
-  posicaoAlterar.value = tarefas.value.findIndex(t => t.id === item.id);
+function editTarefa(idTarefa) {
+  posicaoAlterar.value = tarefas.value.findIndex(t => t.id === idTarefa);
   novaTarefa.value = tarefas.value[posicaoAlterar.value].desc;
 }
 function marcarConcluida(id) {
@@ -73,18 +74,19 @@ function marcarConcluida(id) {
     <input type="text" v-model="novaTarefa">
     <button @click="addTarefa">Adicionar</button>
     <ul>
-      <li v-for="item in tarefasFiltradas" :key="item.id">
-        <span
-          @click="marcarConcluida(item.id)"
-          :class="{ concluida: item.status == 'concluida'}"
-        >
-            {{ item.desc }}
-        </span>
-        <span>
-          <a href="#" @click.prevent="deleteTarefa(item)">Delete</a>
-          <a href="#" @click.prevent="editTarefa(item)">Edit</a>
-        </span>
-      </li>
+      <TaskChild v-for="tarefa in tarefas" :key="tarefa.id" 
+      :id="tarefa.id" :descricao="tarefa.desc" :status="tarefa.status"
+      @excluir="deleteTarefa"
+      >
+         
+      </TaskChild>
+      <TaskChild v-for="tarefa in tarefas" :key="tarefa.id" 
+      :id="tarefa.id" :descricao="tarefa.desc" :status="tarefa.status"
+      @excluir="editTarefa"
+      >
+         
+      </TaskChild>
+
     </ul>
     <div>
       <input type="text" placeholder="Filtrar Tarefa..." v-model="filtro">
