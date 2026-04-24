@@ -76,7 +76,7 @@ function marcarConcluida(id) {
     <ul>
       <TaskChild v-for="tarefa in tarefas" :key="tarefa.id" 
       :id="tarefa.id" :descricao="tarefa.desc" :status="tarefa.status"
-      @excluir="deleteTarefa"
+      @excluir="deleteTarefa" @editar="editTarefa"
       >
          
       </TaskChild>
