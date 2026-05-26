@@ -98,6 +98,8 @@ li {
   cursor: pointer;
 }
 
+
+
 .concluida {
   text-decoration: line-through;
 }
