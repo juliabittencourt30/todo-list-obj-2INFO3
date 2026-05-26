@@ -77,10 +77,10 @@ function marcarConcluida(id) {
     <ul>
       <TaskChild v-for="tarefa in tarefasFiltradas" :key="tarefa.id" 
       :id="tarefa.id" :descricao="tarefa.desc" :status="tarefa.status"
-      @excluir="deleteTarefa" @editar="editTarefa"
-      >
-         
+      @excluir="deleteTarefa" @editar="editTarefa" @marcarconcluida="marcarConcluida"
+      > 
       </TaskChild>
+
     </ul>
     <div>
       <input type="text" placeholder="Filtrar Tarefa..." v-model="filtro">

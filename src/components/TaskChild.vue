@@ -1,12 +1,12 @@
 <script setup>
-import ButtonChild from './ButtonChild.vue';
+    import ButtonChild from './ButtonChild.vue';
     defineProps(['id', 'descricao', 'status'])
-    defineEmits(['editar', 'excluir'])
+    defineEmits(['editar', 'excluir', 'marcarconcluida'])
 </script>
 
 <template>
     <li>
-        <span :class="{concluida: status === 'concluida'}">
+        <span @click.prevent="$emit('marcarconcluida', id)" :class="{concluida: status === 'concluida'}">
         {{ descricao }}
         </span>
         <ButtonChild @clique="$emit('editar', id)">Editar</ButtonChild>
