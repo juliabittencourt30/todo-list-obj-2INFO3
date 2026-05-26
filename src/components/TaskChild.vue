@@ -1,4 +1,5 @@
 <script setup>
+import ButtonChild from './ButtonChild.vue';
     defineProps(['id', 'descricao', 'status'])
     defineEmits(['editar', 'excluir'])
 </script>
@@ -9,7 +10,7 @@
         {{ descricao }}
         </span>
         <ButtonChild @clique="$emit('editar', id)">Editar</ButtonChild>
-        <a href="#" @click.prevent="$emit('excluir', id)">Excluir</a>
+        <ButtonChild @clique="$emit('excluir', id)">Excluir</ButtonChild>
     </li>
 </template>
 

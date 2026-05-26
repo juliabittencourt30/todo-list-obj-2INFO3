@@ -67,6 +67,7 @@ function marcarConcluida(id) {
     tarefas.value[posicao].status = 'concluida'
   }
 }
+
 </script>
 
 <template>
@@ -74,19 +75,12 @@ function marcarConcluida(id) {
     <input type="text" v-model="novaTarefa">
     <button @click="addTarefa">Adicionar</button>
     <ul>
-      <TaskChild v-for="tarefa in tarefas" :key="tarefa.id" 
+      <TaskChild v-for="tarefa in tarefasFiltradas" :key="tarefa.id" 
       :id="tarefa.id" :descricao="tarefa.desc" :status="tarefa.status"
       @excluir="deleteTarefa" @editar="editTarefa"
       >
          
       </TaskChild>
-      <TaskChild v-for="tarefa in tarefas" :key="tarefa.id" 
-      :id="tarefa.id" :descricao="tarefa.desc" :status="tarefa.status"
-      @excluir="editTarefa"
-      >
-         
-      </TaskChild>
-
     </ul>
     <div>
       <input type="text" placeholder="Filtrar Tarefa..." v-model="filtro">
